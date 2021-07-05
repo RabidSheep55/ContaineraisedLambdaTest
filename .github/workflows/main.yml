@@ -43,12 +43,10 @@ jobs:
         name: Update Lambda function code
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ steps.build-ecr.env }}
+          ECR_REPOSITORY: is-exact-equal
           IMAGE_TAG: lambda
         run: |
-          echo "testing"
-          
-# aws lambda --function-name isExactEqual --image-uri $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          aws lambda --function-name isExactEqual --image-uri $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
           
 
