@@ -31,6 +31,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
       - 
         name: Build, tag, and push image to Amazon ECR
+        id: build-ecr
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: is-exact-equal
@@ -40,8 +41,14 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
       -
         name: Update Lambda function code
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ steps.build-ecr.env }}
+          IMAGE_TAG: lambda
         run: |
-          aws lambda --function-name isExactEqual --image-uri $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "testing"
+          
+# aws lambda --function-name isExactEqual --image-uri $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
           
 
