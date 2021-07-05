@@ -1,6 +1,8 @@
 # READ THIS https://docs.aws.amazon.com/lambda/latest/dg/applications-tutorial.html
 # this too https://aws.amazon.com/blogs/compute/using-container-image-support-for-aws-lambda-with-aws-sam/
 
+# Permissions for CI/CD https://aws.amazon.com/premiumsupport/knowledge-center/granular-access-lambda/
+
 import json
 
 info = {
